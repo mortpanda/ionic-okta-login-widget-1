@@ -1,0 +1,70 @@
+.logoutBtn:active, .logoutBtn:hover{
+    background: white !important;
+    color: #00297a !important;
+}
+
+
+.ion-padding {
+    background: white !important;
+    color: #00297a !important;
+}
+
+.title-default {
+    background-color: #00297a !important;
+    margin-top: 10px !important;
+    // height: auto!important;
+    // width: auto!important;
+}
+
+.toolbar-content {
+    background-color: #00297a !important;
+}
+
+.auth-content {
+    background-color: #00297a !important;
+    color: white !important;
+}
+
+#okta-sign-in.auth-container h2,
+#okta-sign-in.auth-container h3,
+#okta-sign-in,
+.o-form,
+.label {
+    font-weight: 600;
+    color: white !important;
+}
+
+.okta-form-label,
+.o-form-label {
+    color: white !important;
+}
+
+.button-primary {
+    color: #00297a !important;
+}
+
+.logoutIcon {
+    color: white !important;
+}
+
+.help,
+.link {
+    color: white !important;
+}
+
+.auth-content {
+    border-radius: 5px !important;
+}
+
+#okta-sign-in.auth-container .okta-sign-in-header,
+.okta-sign-in-header,
+.auth-header {
+    border-color: transparent !important;
+}
+#okta-sign-in {
+    border-radius: 0px;
+}
+
+#okta-sign-in p{
+    color: #41414B!important;
+}

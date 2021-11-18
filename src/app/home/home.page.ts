@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
+import { OktaWidgetService } from '../okta/okta-widget.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private OktaWidgetService: OktaWidgetService) {}
+
+  ngOnInit() {
+    this.OktaWidgetService.login();
+
+  }
 
 }
