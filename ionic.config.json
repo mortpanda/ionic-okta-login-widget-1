@@ -1,0 +1,7 @@
+{
+  "name": "okta-login-widget-1",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
