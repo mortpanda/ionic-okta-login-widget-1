@@ -1,8 +1,8 @@
-.logoutBtn:active, .logoutBtn:hover{
+.logoutBtn:active,
+.logoutBtn:hover {
     background: white !important;
     color: #00297a !important;
 }
-
 
 .ion-padding {
     background: white !important;
@@ -65,6 +65,14 @@
     border-radius: 0px;
 }
 
-#okta-sign-in p{
-    color: #41414B!important;
+#okta-sign-in p {
+    color: #41414b !important;
 }
+
+.auth-content{
+    margin-left: 10px!important;
+    margin-right: 10px!important;
+    margin-bottom: 10px!important;
+    border-radius: 5px!important;
+}
+
