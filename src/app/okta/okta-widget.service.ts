@@ -18,7 +18,7 @@ export class OktaWidgetService {
   public oktaSignIn;
   public idToken;
   public LogoutURI = this.OktaConfig.strPostLogoutURL;
-  strMFASuccess: boolean;
+  strLoggedinUser;
 
   constructor(private router: Router, private OktaConfig: OktaConfigService) { }
 
@@ -62,6 +62,7 @@ export class OktaWidgetService {
 
     oktaSignIn.authClient.token.getUserInfo().then(function (user) {
       console.log("Hello, " + user.email + "! You are *still* logged in! :)");
+      this.strLoggedinUser = user.email;
     }, function (error) {
       oktaSignIn.showSignInToGetTokens({
         el: '#okta-signin-container'
@@ -72,15 +73,17 @@ export class OktaWidgetService {
         const idToken = tokens.idToken;
         const accessToken = tokens.accessToken;
         console.log("Hello, " + idToken.claims.email + "! You just logged in! :)");
+        this.strLoggedinUser = idToken.claims.email;
         // console.log(idToken);
         // console.log(accessToken);
         return oktaSignIn.authClient.token.getUserInfo(accessToken, idToken)
           .then(function (user) {
             // user has details about the user
-            //console.log(user);
+            // console.log(user);
             // console.log(JSON.stringify(user));
-            //window.location.replace(window.location.origin);
-             window.location.replace(this.OktaConfig.strRedirectURL);
+            window.location.replace(window.location.origin);
+            //console.log(this.OktaConfig.strRedirectURL);
+            //  window.location.replace(this.OktaConfig.strRedirectURL);
           })
           .catch(function (err) {
             // handle OAuthError or AuthSdkError (AuthSdkError will be thrown if app is in OAuthCallback state)
@@ -125,63 +128,5 @@ export class OktaWidgetService {
     oktaSignIn.remove();
 
   }
-
-  // async SaveMFA() {
-  //   const OktaClientID = this.OktaConfig.strMFAClientID;
-  //   const OktaBaseURI = this.OktaConfig.strBaseURI;
-  //   const OktaLang = this.OktaConfig.strLang;
-  //   const OktaRedirect = this.OktaConfig.strRedirectURL;
-  //   const OktaBrand = this.OktaConfig.strBrand;
-  //   const OktaPostlogoutURI = this.OktaConfig.strPostLogoutURL;
-  //   const OktaIssuer = this.OktaConfig.strIssuer;
-  //   const OktaScope = this.OktaConfig.strScope;
-  //   const OktaResType = this.OktaConfig.strResponseType;
-  //   const OktaResMode = this.OktaConfig.strResponseMode;
-  //   const OktaWidgetLogo = this.OktaConfig.strLogo;
-  //   var oktaSignIn = new OktaSignIn({
-  //     logo: OktaWidgetLogo,
-  //     clientId: OktaClientID,
-  //     baseUrl: OktaBaseURI,
-  //     language: OktaLang,
-  //     redirectUri: OktaRedirect,
-  //     colors: {
-  //       brand: OktaBrand,
-  //     },
-  //     postLogoutRedirectUri: OktaPostlogoutURI,
-  //     authParams: {
-  //       issuer: OktaIssuer,
-  //       responseMode: 'fragment',
-  //       responseType: OktaResType,
-  //       scopes: OktaScope,
-  //       pkce: false,
-  //       prompt: OktaResMode
-  //     },
-  //   });
-
-  //   oktaSignIn.showSignInToGetTokens({
-  //     el: '#okta-signin-container'
-  //   }).then(function (tokens) {
-      
-  //     oktaSignIn.authClient.tokenManager.setTokens(tokens);
-  //     oktaSignIn.remove();
-
-  //     const idToken = tokens.idToken;
-  //     const accessToken = tokens.accessToken;
-  //     console.log("Hello, " + idToken.claims.email + "! You just logged in! :)");
-      
-  //     return oktaSignIn.authClient.token.getUserInfo(accessToken, idToken)
-  //       .then(function (user) {        
-          
-  //         window.location.replace(window.location.origin);
-          
-  //       })
-  //       .catch(function (err) {
-  //         // handle OAuthError or AuthSdkError (AuthSdkError will be thrown if app is in OAuthCallback state)
-  //       });
-
-  //   }).catch(function (err) {
-  //     console.error(err);
-  //   });
-  // }
 
 }
