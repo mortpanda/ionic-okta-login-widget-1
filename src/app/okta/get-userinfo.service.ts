@@ -39,7 +39,7 @@ export class GetUserinfoService {
   UserVerifiedEMail;
   UserCredType;
   UserCredName;
-  
+
   async GetMe(url, token) {
     const thisFetch = fetch(url, {
       method: 'GET',
@@ -62,8 +62,8 @@ export class GetUserinfoService {
     this.UserLocality = this.strThisUserInfo.profile.city;
     this.UserCountry = this.strThisUserInfo.profile.countryCode;
     this.UserZip = this.strThisUserInfo.profile.zipCode;
-    this.UserCIAM = this.strThisUserInfo.profile.ciam;
-    this.UserWF = this.strThisUserInfo.profile.workforce;
+    const strCIAM = this.strThisUserInfo.profile.ciam;
+    const strWF = this.strThisUserInfo.profile.workforce;
     this.UserStatus = this.strThisUserInfo.status;
     this.UserPasswordLastChanged = this.strThisUserInfo.passwordChanged;
     this.UserCreatedDate = this.strThisUserInfo.created;
@@ -71,6 +71,25 @@ export class GetUserinfoService {
     this.UserCredType = this.strThisUserInfo.credentials.provider.type;
     this.UserCredName = this.strThisUserInfo.credentials.provider.name;
     this.UserEmail = this.strThisUserInfo.profile.email;
+
+    switch (strCIAM) {
+      case true:
+        this.UserCIAM = false;
+        break;
+      case false:
+        this.UserCIAM = true;
+        break;
+    }
+
+    switch (strWF) {
+      case true:
+        this.UserWF = false;
+        break;
+      case false:
+        this.UserWF = true;
+        break;
+    }
+    
   }
 
   async GetUserInfo() {

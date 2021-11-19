@@ -57,7 +57,7 @@ export class ProfilePage implements OnInit {
       case true:
         this.strThisSession = await this.authService.token.getWithoutPrompt();
         this.GetUserinfoService.GetMe(this.OktaConfigService.strBaseURI + this.OktaApiEnpointsService.strUserMe, this.strThisSession.tokens.accessToken.accessToken);
-        this.navigateTo();
+        
 
         break;
 
@@ -76,10 +76,11 @@ export class ProfilePage implements OnInit {
     await alert.present();
   }
 
-  isChecked :boolean;
-  navigateTo()
-  {
-    console.log("Next Clicked")
-    this.isChecked = true;
-  }
+  
+  // navigateTo()
+  // {
+  //   //console.log("Next Clicked")
+  //   this.CIAMChecked = true;
+  //   console.log(this.CIAMChecked)
+  // }
 }

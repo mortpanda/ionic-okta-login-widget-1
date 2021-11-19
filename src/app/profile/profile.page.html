@@ -72,16 +72,24 @@
     </ion-card-content>
   </ion-card>
 
+
+  <ion-card> 
+    <ion-card-content>
+      <h1><ion-icon name="desktop-sharp" class="ucIcon"></ion-icon><a class="ucHead">ご利用中のソリューション</a></h1>
+    </ion-card-content>
+  </ion-card>
+
+
   <ion-card>
     <ion-item>
       <ion-img src="assets/img/okta_ciam_white.png" class="okta_img"></ion-img> 
-      <ion-checkbox class="ucChk" color="tertiary" [checked]="!isChecked"></ion-checkbox>
+      <ion-checkbox class="ucChk" color="tertiary" [checked]="!this.GetUserinfoService.UserCIAM"></ion-checkbox>
     </ion-item>
   </ion-card>
   <ion-card>
     <ion-item>
       <ion-img src="assets/img/okta_wf_white.png" class="okta_img"></ion-img>      
-      <ion-checkbox class="ucChk" color="tertiary"></ion-checkbox>
+      <ion-checkbox class="ucChk" color="tertiary" [checked]="!this.GetUserinfoService.UserWF"></ion-checkbox>
     </ion-item>
   </ion-card>
   <!-- <ion-card>
