@@ -14,7 +14,9 @@ import { OktaClientService } from './okta/okta-client.service';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule],
+    AppRoutingModule,
+    
+  ],
   providers: [{
     provide: RouteReuseStrategy,
     useClass: IonicRouteStrategy

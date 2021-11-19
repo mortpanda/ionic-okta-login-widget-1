@@ -21,10 +21,10 @@ import {
 export class HomePage {
   strUserSession;
   private authService = new OktaAuth(this.OktaClientService.config);
-  constructor(private OktaWidgetService: OktaWidgetService, private OktaClientService:OktaClientService) {}
+  strMe;
+  constructor(private OktaWidgetService: OktaWidgetService, private OktaClientService: OktaClientService) { }
 
   async ngOnInit() {
-    
     this.strUserSession = await this.authService.session.exists()
       .then(function (exists) {
         if (exists) {
@@ -40,6 +40,7 @@ export class HomePage {
     switch (this.strUserSession) {
       case false:
         this.OktaWidgetService.login();
+
         break;
 
       case true:
@@ -47,8 +48,7 @@ export class HomePage {
         break;
 
     }
-    
-    
+
 
   }
 

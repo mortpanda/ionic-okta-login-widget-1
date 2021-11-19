@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { ViewEncapsulation } from '@angular/core';
 import { OktaClientService } from './okta/okta-client.service';
+
 
 @Component({
   selector: 'app-root',
@@ -19,5 +20,10 @@ export class AppComponent {
   LogOut() {
     this.OktaClientService.OktaClient.signOut();
   }
+
+  // async ngOnInit() {
+    
+  // }
+  
 
 }

@@ -10,7 +10,8 @@ export class OktaConfigService {
 
 //Localhost
 strBaseURI = 'https://kent-nagao-test.oktapreview.com';  
-strRedirectURL = 'https://localhost:4200/okta-login-widget-1/home';
+//strRedirectURL = 'https://localhost:4200/okta-login-widget-1/home';
+strRedirectURL = 'https://localhost:4200/okta-login-widget-1/profile';
 strClientID = '0oa1xjkrp11jbGS0N1d7';
 strIssuer = 'https://kent-nagao-test.oktapreview.com/';
 strPostLogoutURL = 'https://localhost:4200/okta-login-widget-1/home';
