@@ -5,7 +5,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { OktaClientService } from './okta/okta-client.service';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -15,6 +15,7 @@ import { OktaClientService } from './okta/okta-client.service';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    HttpClientModule,
     
   ],
   providers: [

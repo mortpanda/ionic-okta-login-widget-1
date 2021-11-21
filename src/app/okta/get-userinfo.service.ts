@@ -47,6 +47,8 @@ export class GetUserinfoService {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token,
         'Accept': 'application/json',
+        'Origin': this.OktaConfigService.strOrigin,
+        'Sec-Fetch-Site' : 'same-origin',
       },
 
     })
