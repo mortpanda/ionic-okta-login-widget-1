@@ -53,6 +53,8 @@ export class ProfilePage implements OnInit {
     var CheckUserSession = await this.authService.token.getUserInfo()
       .then(function (user) {
         //console.log(user)
+        noAuth = true
+        return noAuth
       })
       .catch((error) => {
         //console.log(error);
@@ -79,17 +81,19 @@ export class ProfilePage implements OnInit {
         break;
 
       case true:
-        // access and ID tokens are retrieved automatically from the TokenManager
-        this.authService.token.getWithoutPrompt()
-          .then(function (user) {
-            // user has details about the user
-            console.log(user)
-            return user;
-            //return Promise.resolve(this.authService);
-          })
-          .catch(function (err) {
-            console.log('Error!');
-          });
+        this.strProfilePageSession = await this.authService.tokenManager.getTokens();
+        this.GetUserinfoService.GetMe(this.OktaConfigService.strBaseURI + this.OktaApiEnpointsService.strUserMe, this.strProfilePageSession.accessToken.value);
+      // // access and ID tokens are retrieved automatically from the TokenManager
+      // this.authService.token.getWithoutPrompt()
+      //   .then(function (user) {
+      //     // user has details about the user
+      //     console.log(user)
+      //     return user;
+      //     //return Promise.resolve(this.authService);
+      //   })
+      //   .catch(function (err) {
+      //     console.log('Error!');
+      //   });
     }
     //this.strProfilePageSession = await this.authService.tokenManager.getTokens();
     //console.log(this.strProfilePageSession.noAuth);
