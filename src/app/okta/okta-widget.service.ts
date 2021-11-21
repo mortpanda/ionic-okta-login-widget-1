@@ -10,17 +10,17 @@ import { OktaConfigService } from './okta-config.service';
 })
 export class OktaWidgetService {
   private authClient = new OktaAuth({
-    issuer: this.OktaConfig.strIssuer,
-    clientId: this.OktaConfig.strClientID,
+    issuer: this.OktaConfigService.strIssuer,
+    clientId: this.OktaConfigService.strClientID,
   });
   public isAuthenticated = new BehaviorSubject<boolean>(false);
   public strstateToken;
   public oktaSignIn;
   public idToken;
-  public LogoutURI = this.OktaConfig.strPostLogoutURL;
+  public LogoutURI = this.OktaConfigService.strPostLogoutURL;
   //public strLoggedinUser;
 
-  constructor(private router: Router, private OktaConfig: OktaConfigService) { }
+  constructor(private router: Router, public OktaConfigService: OktaConfigService) { }
 
   async checkAuthenticated() {
     const authenticated = await this.authClient.session.exists();
@@ -29,17 +29,17 @@ export class OktaWidgetService {
   }
 
   async login() {
-    const OktaClientID = this.OktaConfig.strClientID;
-    const OktaBaseURI = this.OktaConfig.strBaseURI;
-    const OktaLang = this.OktaConfig.strLang;
-    const OktaRedirect = this.OktaConfig.strRedirectURL;
-    const OktaBrand = this.OktaConfig.strBrand;
-    const OktaPostlogoutURI = this.OktaConfig.strPostLogoutURL;
-    const OktaIssuer = this.OktaConfig.strIssuer;
-    const OktaScope = this.OktaConfig.strScope;
-    const OktaResType = this.OktaConfig.strResponseType;
-    const OktaResMode = this.OktaConfig.strResponseMode;
-    const OktaWidgetLogo = this.OktaConfig.strLogo;
+    const OktaClientID = this.OktaConfigService.strClientID;
+    const OktaBaseURI = this.OktaConfigService.strBaseURI;
+    const OktaLang = this.OktaConfigService.strLang;
+    const OktaRedirect = this.OktaConfigService.strRedirectURL;
+    const OktaBrand = this.OktaConfigService.strBrand;
+    const OktaPostlogoutURI = this.OktaConfigService.strPostLogoutURL;
+    const OktaIssuer = this.OktaConfigService.strIssuer;
+    const OktaScope = this.OktaConfigService.strScope;
+    const OktaResType = this.OktaConfigService.strResponseType;
+    const OktaResMode = this.OktaConfigService.strResponseMode;
+    const OktaWidgetLogo = this.OktaConfigService.strLogo;
     var oktaSignIn = new OktaSignIn({
       logo: OktaWidgetLogo,
       clientId: OktaClientID,
@@ -62,6 +62,7 @@ export class OktaWidgetService {
 
     oktaSignIn.authClient.token.getUserInfo().then(function (user) {
       console.log("Hello, " + user.email + "! You are *still* logged in! :)");
+      window.location.replace(OktaRedirect);
       //this.strLoggedinUser = user.email;
     }, function (error) {
       oktaSignIn.showSignInToGetTokens({
@@ -80,14 +81,16 @@ export class OktaWidgetService {
         return oktaSignIn.authClient.token.getUserInfo(accessToken, idToken)
           .then(function (user) {
             // user has details about the user
-            // console.log(user);
+            console.log(user);
             // console.log(JSON.stringify(user));
             ////window.location.replace(window.location.origin);
             //console.log(this.OktaConfig.strRedirectURL);
             //window.location.replace(this.OktaConfig.strRedirectURL);
             //window.location.replace("/profile");
+            //  window.location.replace(OktaRedirect);
           })
           .catch(function (err) {
+            console.error(err);
             // handle OAuthError or AuthSdkError (AuthSdkError will be thrown if app is in OAuthCallback state)
           });
 
@@ -99,16 +102,16 @@ export class OktaWidgetService {
   }
 
   CloseWidget() {
-    const OktaClientID = this.OktaConfig.strClientID;
-    const OktaBaseURI = this.OktaConfig.strBaseURI;
-    const OktaLang = this.OktaConfig.strLang;
-    const OktaRedirect = this.OktaConfig.strRedirectURL;
-    const OktaBrand = this.OktaConfig.strBrand;
-    const OktaPostlogoutURI = this.OktaConfig.strPostLogoutURL;
-    const OktaIssuer = this.OktaConfig.strIssuer;
-    const OktaScope = this.OktaConfig.strScope;
-    const OktaResType = this.OktaConfig.strResponseType;
-    const OktaResMode = this.OktaConfig.strResponseMode;
+    const OktaClientID = this.OktaConfigService.strClientID;
+    const OktaBaseURI = this.OktaConfigService.strBaseURI;
+    const OktaLang = this.OktaConfigService.strLang;
+    const OktaRedirect = this.OktaConfigService.strRedirectURL;
+    const OktaBrand = this.OktaConfigService.strBrand;
+    const OktaPostlogoutURI = this.OktaConfigService.strPostLogoutURL;
+    const OktaIssuer = this.OktaConfigService.strIssuer;
+    const OktaScope = this.OktaConfigService.strScope;
+    const OktaResType = this.OktaConfigService.strResponseType;
+    const OktaResMode = this.OktaConfigService.strResponseMode;
     var oktaSignIn = new OktaSignIn({
       clientId: OktaClientID,
       baseUrl: OktaBaseURI,

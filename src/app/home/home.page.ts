@@ -11,7 +11,7 @@ import {
   UserClaims,
   TokenParams
 } from '@okta/okta-auth-js'
-
+import { OktaConfigService } from '../okta/okta-config.service';
 
 @Component({
   selector: 'app-home',
@@ -22,34 +22,35 @@ export class HomePage {
   strUserSession;
   private authService = new OktaAuth(this.OktaClientService.config);
   strMe;
-  constructor(private OktaWidgetService: OktaWidgetService, private OktaClientService: OktaClientService) { }
+  constructor(private OktaWidgetService: OktaWidgetService, private OktaClientService: OktaClientService, public OktaConfigService: OktaConfigService) { }
 
   async ngOnInit() {
-    this.strUserSession = await this.authService.session.exists()
-      .then(function (exists) {
-        if (exists) {
-          // logged in
-          console.log('Session to Okta : ' + exists);
-          return exists
-        } else {
-          // not logged in
-          console.log('Session to Okta : ' + exists);
-          return exists
-        }
-      });
-    switch (this.strUserSession) {
-      case false:
-        this.OktaWidgetService.login();
+    // this.strUserSession = await this.authService.session.exists()
+    //   .then(function (exists) {
+    //     if (exists) {
+    //       // logged in
+    //       console.log('Session to Okta : ' + exists);
+    //       return exists
+    //     } else {
+    //       // not logged in
+    //       console.log('Session to Okta : ' + exists);
+    //       return exists
+    //     }
+    //   });
+    // switch (this.strUserSession) {
+    //   case false:
+    this.OktaWidgetService.login();
 
-        break;
+    //       break;
 
-      case true:
-        window.location.replace(this.OktaClientService.config.redirectUri);
-        break;
+    //     case true:
+    //       window.location.replace(this.OktaConfigService.strRedirectURL);
+    //       break;
 
-    }
+    //   }
 
+
+    // }
 
   }
-
 }

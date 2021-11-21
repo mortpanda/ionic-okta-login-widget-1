@@ -17,6 +17,7 @@ import { OktaConfigService } from '../okta/okta-config.service';
 import { OktaApiEnpointsService } from '../okta/okta-api-enpoints.service';
 import { GetUserinfoService } from '../okta/get-userinfo.service';
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -24,45 +25,15 @@ import { GetUserinfoService } from '../okta/get-userinfo.service';
   encapsulation: ViewEncapsulation.None
 })
 export class ProfilePage implements OnInit {
-  strUserSession;
+  strProfilePageSession;
   strThisSession;
   strWorkforce;
-  private authService = new OktaAuth(this.OktaClientService.config);
+  strError;
+  public authService = new OktaAuth(this.OktaClientService.config);
 
-  constructor(private menu: MenuController, private OktaClientService: OktaClientService,
-    public alertController: AlertController, private OktaConfigService: OktaConfigService,
-    private OktaApiEnpointsService: OktaApiEnpointsService, private GetUserinfoService: GetUserinfoService) { }
-
-
-  async ngOnInit() {
-    this.strUserSession = await this.authService.session.exists()
-      .then(function (exists) {
-        if (exists) {
-          // logged in
-          console.log('Session to Okta : ' + exists);
-          return exists
-        } else {
-          // not logged in
-          console.log('Session to Okta : ' + exists);
-          return exists
-        }
-      });
-    switch (this.strUserSession) {
-      case false:
-        // If the user is not logged and gets to this page, redirect them back to the home login page
-        this.Notloggedin();
-        window.location.replace(this.OktaConfigService.strPostLogoutURL)
-        break;
-
-      case true:
-        this.strThisSession = await this.authService.token.getWithoutPrompt();
-        this.GetUserinfoService.GetMe(this.OktaConfigService.strBaseURI + this.OktaApiEnpointsService.strUserMe, this.strThisSession.tokens.accessToken.accessToken);
-        
-
-        break;
-
-    }
-  }
+  constructor(public menu: MenuController, public OktaClientService: OktaClientService,
+    public alertController: AlertController, public OktaConfigService: OktaConfigService,
+    public OktaApiEnpointsService: OktaApiEnpointsService, public GetUserinfoService: GetUserinfoService) { }
 
   async Notloggedin() {
     const alert = await this.alertController.create({
@@ -76,7 +47,127 @@ export class ProfilePage implements OnInit {
     await alert.present();
   }
 
-  
+
+  async ngOnInit() {
+    let noAuth;
+    var CheckUserSession = await this.authService.token.getUserInfo()
+      .then(function (user) {
+        //console.log(user)
+      })
+      .catch((error) => {
+        //console.log(error);
+        noAuth = false
+        return noAuth
+      });
+    this.authService.tokenManager.getTokens()
+      .then(({ accessToken, idToken }) => {
+        // handle accessToken and idToken
+        //console.log(accessToken);
+        return accessToken;
+      })
+      .catch(function (err) {
+        // handle OAuthError or AuthSdkError (AuthSdkError will be thrown if app is in OAuthCallback state)
+        //console.error(err);
+        //return err
+      });
+    console.log(CheckUserSession);
+    switch (CheckUserSession) {
+      case false:
+        // If the user is not logged and gets to this page, redirect them back to the home login page
+        this.Notloggedin();
+        window.location.replace(this.OktaConfigService.strPostLogoutURL)
+        break;
+
+      case true:
+        // access and ID tokens are retrieved automatically from the TokenManager
+        this.authService.token.getWithoutPrompt()
+          .then(function (user) {
+            // user has details about the user
+            console.log(user)
+            return user;
+            //return Promise.resolve(this.authService);
+          })
+          .catch(function (err) {
+            console.log('Error!');
+          });
+    }
+    //this.strProfilePageSession = await this.authService.tokenManager.getTokens();
+    //console.log(this.strProfilePageSession.noAuth);
+
+
+
+    //console.log(this.strProfilePageSession.accessToken.value);
+    //this.GetUserinfoService.GetMe(this.OktaConfigService.strBaseURI + this.OktaApiEnpointsService.strUserMe, this.strProfilePageSession.accessToken.value);
+
+
+    // this.authService.token.getWithoutPrompt({
+    //   responseType: 'id_token', // or array of types
+    //   sessionToken: 'testSessionToken' // optional if the user has an existing Okta session
+    // })
+    // .then(function(res) {
+    //   var tokens = res.tokens;
+
+    //   // Do something with tokens, such as
+    //   this.authService.tokenManager.setTokens(tokens);
+    // })
+    // .catch(function(err) {
+    //   // handle OAuthError or AuthSdkError (AuthSdkError will be thrown if app is in OAuthCallback state)
+    // });
+
+
+
+    // this.strProfilePageSession = await this.authService.session.exists()
+    //   .then(function (exists) {
+    //     if (exists) {
+    //       // logged in
+    //       console.log('Session to Okta : ' + exists);
+    //       return exists
+    //     } else {
+    //       // not logged in
+    //       console.log('Session to Okta : ' + exists);
+    //       return exists
+    //     }
+    //   }).catch(function (err) {
+    //       console.error(err);
+    //   });
+
+
+    // this.strProfilePageSession = await this.authService.session.exists()
+    // .then(function (exists) {
+    //   console.log(exists)
+    // });
+
+    // switch (this.strUserSession) {
+    //   case false:
+    //     // If the user is not logged and gets to this page, redirect them back to the home login page
+    //     this.Notloggedin();
+    //     window.location.replace(this.OktaConfigService.strPostLogoutURL)
+    //     break;
+
+    //   case true:
+    //     // access and ID tokens are retrieved automatically from the TokenManager
+    // this.authService.token.getWithoutPrompt()
+    //   .then(function (user) {
+    //     // user has details about the user
+    //     console.log(user)
+    //     return user;
+    //     //return Promise.resolve(this.authService);
+    //   })
+    //   .catch(function (err) {
+    //     console.log('Error!');
+    //   });
+    // this.strThisSession = await this.authService.token.getWithoutPrompt();
+    // this.GetUserinfoService.GetMe(this.OktaConfigService.strBaseURI + this.OktaApiEnpointsService.strUserMe, this.strThisSession.tokens.accessToken.accessToken);
+
+
+    //     break;
+
+    // }
+  }
+
+
+
+
   // navigateTo()
   // {
   //   //console.log("Next Clicked")

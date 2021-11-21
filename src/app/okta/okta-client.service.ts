@@ -7,7 +7,7 @@ import { OktaConfigService } from './okta-config.service';
 })
 export class OktaClientService {
 
-  constructor(private OktaConfigService: OktaConfigService) { }
+  constructor(public OktaConfigService: OktaConfigService) { }
 
   config = {
     clientId: this.OktaConfigService.strClientID,

@@ -17,11 +17,14 @@ import { OktaClientService } from './okta/okta-client.service';
     AppRoutingModule,
     
   ],
-  providers: [{
+  providers: [
+    OktaClientService,
+
+    {
+      
     provide: RouteReuseStrategy,
     useClass: IonicRouteStrategy
   },
-  OktaClientService,
 ],
 
   bootstrap: [AppComponent],
