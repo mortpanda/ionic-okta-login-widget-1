@@ -21,9 +21,7 @@ export class AppComponent {
     this.OktaClientService.OktaClient.signOut();
   }
 
-  // async ngOnInit() {
-    
-  // }
+ 
   
 
 }
