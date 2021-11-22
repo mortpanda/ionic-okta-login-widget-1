@@ -11,6 +11,7 @@ import {
   UserClaims,
   TokenParams
 } from '@okta/okta-auth-js'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,8 @@ export class GetUserinfoService {
   strUserID;
   private authService = new OktaAuth(this.OktaClientService.config);
 
-  constructor(private OktaClientService: OktaClientService, private OktaConfigService: OktaConfigService, private OktaApiEnpointsService: OktaApiEnpointsService) { }
+  constructor(private OktaClientService: OktaClientService, private OktaConfigService: OktaConfigService,
+    private OktaApiEnpointsService: OktaApiEnpointsService, private HttpClient: HttpClient) { }
 
   UserGivenName;
   UserLastName;
@@ -40,21 +42,31 @@ export class GetUserinfoService {
   UserCredType;
   UserCredName;
 
-  async GetMe(url, token) {
-    const thisFetch = fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token,
-        'Accept': 'application/json',
-        'Origin': this.OktaConfigService.strOrigin,
-        'Sec-Fetch-Site' : 'same-origin',
-      },
+  
 
-    })
-      .then(response => response.json())
-    this.strThisUserInfo = await thisFetch;
-    console.log('Getting me using service')
+  async GetMe(url, token) {
+    let headers = new HttpHeaders()
+    headers = headers.set('content-type', 'application/json')
+    headers = headers.set('Authorization', 'Bearer ' + token)
+    headers = headers.set('Accept', 'application/json');
+    headers = headers.set('Access-Control-Allow-Origin', '*')
+    headers = headers.set('Access-Control-Allow-Origin', '*');
+    headers = headers.set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+
+    
+    this.strThisUserInfo = await this.HttpClient.get(url, { headers: headers })
+
+      .toPromise()
+      .then(data => {
+        
+        console.log(data)
+        //...
+        return data;
+
+      }).catch(function (err) {
+        console.log('Error!');
+      });
+
     console.log(this.strThisUserInfo);
     this.strUserID = this.strThisUserInfo.id;
     this.UserGivenName = this.strThisUserInfo.profile.firstName;
@@ -90,15 +102,8 @@ export class GetUserinfoService {
       case false:
         this.UserWF = true;
         break;
-    }
-    
+    };
   }
 
-  async GetUserInfo() {
-    this.strThisSession = await this.authService.token.getWithoutPrompt();
-    this.GetMe(this.OktaConfigService.strBaseURI + this.OktaApiEnpointsService.strUserMe, this.strThisSession.tokens.accessToken.accessToken);
-  }
-
-
-
+  
 }

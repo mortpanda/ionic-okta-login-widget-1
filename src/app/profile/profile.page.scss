@@ -1,49 +1,62 @@
-.profileBody {
-    color: black !important;
-}
 
 .alert-message,
 .sc-ion-alert-md {
     background: white !important;
-    color: #00297a !important;
+    // color: #00297a !important;
 }
 
 .oktajapanBanner {
     margin: auto;
+}
+
+.userLabel {
+    // color: #aaaab4 !important;
+    margin-bottom: 5px !important;
+    margin-top: 15px!important;
+    color: #41414B!important;
+}
+.oktaUser {
+    color: #00297A !important;
+    margin-bottom: 5px !important;
+}
+
+.profileIcon {
+    margin-right: 10px !important;
+    color: white !important;
+}
+
+.okta_img {
+    margin-top: 15px !important;
+    margin-bottom: 20px !important;
+    margin-left: 5px !important;
+    margin-right: auto !important;
+}
+.ucChk {
+    margin-right: 15px !important;
+    margin-left: 15px !important;
+}
+.ucIcon {
+    // color: white !important;
+    margin-right: 10px !important;
+    margin-top: 10px !important;
+    color: white !important;    
+}
+
+.ucHead {
+    color: white !important;
+    font-weight: 600 !important;
+}
+
+.card-content-md{
+    background-color: white!important;
+}
+
+.cardHeader, .cardTittle, .solutionItem{
+    background-color: #00297A!important;
+    color: white !important;
     
 }
 
-.userLabel{
-    color: #AAAAB4!important;
-    margin-bottom: 5px!important;
+.ucCardContent{
+    background-color: #00297A!important;
 }
-.oktaUser{
-    color: white!important;
-    margin-bottom: 5px!important;
-}
-
-  .profileIcon{
-    margin-right: 10px!important;
-}
-
-.okta_img{
-    margin-top: 15px!important;
-    margin-bottom: 20px!important;
-    margin-left: 5px!important;
-    margin-right: auto!important;
-}
-.ucChk{
-    margin-right: 15px!important;
-    margin-left: 15px!important;
-}
-.ucIcon{
-    color: white!important;
-    margin-right:10px!important;
-    margin-top: 10px!important
-}
-
-.ucHead{
-    color: white!important;
-    font-weight: 600!important;
-}
-

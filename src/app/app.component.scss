@@ -1,10 +1,19 @@
-.git_logo{
-    margin-right: 20px!important;
-    width: 25px!important;
-    height: auto!important;
+.toolbar-background,
+.toolbar-container,
+.in-toolbar,
+.header-md,
+.header-collapse-none {
+    color: white !important;
+    background-color: #00297a !important;
 }
-.MenuIcon{
-    padding-right: 20px!important;
+
+.git_logo {
+    margin-right: 20px !important;
+    width: 25px !important;
+    height: auto !important;
+}
+.MenuIcon {
+    padding-right: 20px !important;
 }
 
 .logoutBtn:active,
@@ -13,19 +22,19 @@
     color: #00297a !important;
 }
 
-.ion-padding {
-    background: white !important;
-    color: #00297a !important;
-}
+// .ion-padding {
+//     background: white !important;
+//     color: #00297a !important;
+// }
 
 .title-default {
     background-color: #00297a !important;
     margin-top: 10px !important;
 }
 
-.toolbar-content {
-    background-color: #00297a !important;
-}
+// .toolbar-content {
+//     background-color: #00297a !important;
+// }
 
 .auth-content {
     background-color: #00297a !important;
@@ -50,9 +59,9 @@
     color: #00297a !important;
 }
 
-.LogoutIcon {
-    color: white !important;
-}
+// .LogoutIcon {
+//     color: white !important;
+// }
 
 .help,
 .link {
@@ -76,14 +85,36 @@
     color: #41414b !important;
 }
 
-.auth-content{
+.auth-content {
     // margin-left: 10px!important;
     // margin-right: 10px!important;
-    margin-bottom: 10px!important;
-    border-radius: 5px!important;
+    margin-bottom: 10px !important;
+    border-radius: 5px !important;
 }
 
-#okta-sign-in-container.okta-signin-container, .ion-padding{
-    border-radius: 5px!important;
-  }
+#okta-sign-in-container.okta-signin-container,
+.ion-padding {
+    border-radius: 5px !important;
+}
 
+.okta-sign-in-container{
+    border-radius: 5px !important;
+}
+
+.mainMenu {
+    background-color: #00297a !important;
+}
+
+ion-toolbar {
+    --background: #00297a !important;
+}
+
+ion-item {
+    --background: #00297a !important;
+    color: white !important;
+}
+
+ion-icon {
+    --background: #00297a !important;
+    color: white !important;
+}

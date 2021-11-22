@@ -9,16 +9,16 @@ export class OktaConfigService {
   constructor() { }
 
 //Localhost
-strOrigin = 'http://localhost:4200';
+strOrigin = 'http://localhost';
 strBaseURI = 'https://kent-nagao-test.oktapreview.com';  
 //strRedirectURL = 'https://localhost:4200/okta-login-widget-1/home';
 //strRedirectURL = 'https://localhost:4200/okta-login-widget-1/profile';
-strRedirectURL = 'http://localhost:4200/profile';
+strRedirectURL = 'http://localhost:8100/profile';
 // strRedirectURL = 'http://localhost/profile';
 strClientID = '0oa1xjkrp11jbGS0N1d7';
 strIssuer = 'https://kent-nagao-test.oktapreview.com/';
 //strPostLogoutURL = 'https://localhost:4200/okta-login-widget-1/home';
- strPostLogoutURL = 'http://localhost:4200/home';
+ strPostLogoutURL = 'http://localhost:8100/home';
 // strPostLogoutURL = 'http://localhost/home';
 strScope = ['openid', 'email', 'profile','address','okta.users.read.self','okta.users.manage.self'];
 strResponseType = ['token','id_token'];

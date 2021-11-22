@@ -2,5 +2,8 @@
   "appId": "io.ionic.starter-okta",
   "appName": "okta-login-widget-1",
   "webDir": "www",
-  "bundledWebRuntime": false
+  "bundledWebRuntime": false,
+  "server": {
+    "hostname": "localhost:8100"
+}
 }
