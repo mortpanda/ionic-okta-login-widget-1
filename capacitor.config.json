@@ -1,9 +1,9 @@
 {
-  "appId": "io.ionic.starter-okta",
+  "appId": "com.oktaapaccsm.app",
   "appName": "okta-login-widget-1",
   "webDir": "www",
   "bundledWebRuntime": false,
   "server": {
     "hostname": "localhost:8100"
-}
+  }
 }

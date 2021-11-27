@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">okta-login-widget-1</string>
     <string name="title_activity_main">okta-login-widget-1</string>
-    <string name="package_name">io.ionic.starter</string>
-    <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="package_name">com.oktaapaccsm.app</string>
+    <string name="custom_url_scheme">com.oktaapaccsm.app</string>
 </resources>
