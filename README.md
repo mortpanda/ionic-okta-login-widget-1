@@ -21,6 +21,6 @@ https://play.google.com/store/apps/details?id=com.oktaapaccsm.app
 <img src="/screenshots/Screenshot_2021-11-29-18-40-26-49_75a132e8b199da2fad5ba6010872ffe3.jpg" alt="drawing" height="600"/>
 
 ## Configuration File
-* A file called 'okta-config.service.ts' needs to be created, and placed at the below path,
-    * Path to config file : '/src/app/okta'
+* A file called ```okta-config.service.ts``` needs to be created, and placed at the below path,
+    * Path to config file : ```/src/app/okta```
   
