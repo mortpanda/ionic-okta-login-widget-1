@@ -1,10 +1,11 @@
 // import { Injectable } from '@angular/core';
-
+// import OktaSignIn from '@okta/okta-signin-widget';
+// import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
 
 // @Injectable({
 //   providedIn: 'root'
 // })
-// export class OktaConfig {
+// export class OktaConfigService {
 //   constructor() { }
 
 // Github
